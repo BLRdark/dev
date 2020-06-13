@@ -1,0 +1,3 @@
+﻿  keylogger.cpp
+C:\Users\dark\Desktop\self\0000_dev\ONION\keylogger.cpp(45,23): warning C4477: "fprintf": в строке форматирования "%s" требуется аргумент типа "char *", но вариативный аргумент "1" имеет тип "int *"
+  ONION.vcxproj -> C:\Users\dark\Desktop\self\0000_dev\ONION\Debug\ONION.exe
